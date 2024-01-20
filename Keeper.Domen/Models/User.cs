@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Keeper.Domen.Models;
 
-public partial class User
+public class User
 {
     public long Id { get; set; }
     public string Email { get; set; } = null!;
