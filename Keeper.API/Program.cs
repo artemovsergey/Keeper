@@ -1,7 +1,15 @@
+using Keeper.Domen.Data;
+using Keeper.Domen.Interfaces;
+using Keeper.Domen.Models;
+using Keeper.Domen.Services;
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSingleton<IUserRepository, UserLocalRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 
 var app = builder.Build();
@@ -34,6 +42,19 @@ app.MapGet("api/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
+
+app.MapPost("/users", async (User user, IUserService userService) =>
+{
+    userService.AddUser(user);
+    Console.WriteLine(userService.CountUsers());
+    return Results.Created($"/todoitems/{user.Id}", user);
+});
+
+app.MapGet("/users", (IUserService userService) =>
+{
+   Console.WriteLine(userService.CountUsers());
+   return userService.GetUsers() ;
+});
 
 app.Run();
 

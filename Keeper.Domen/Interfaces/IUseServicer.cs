@@ -8,15 +8,19 @@ using System.Threading.Tasks;
 
 namespace Keeper.Domen.Interfaces;
 
-public interface IUser
+public interface IUserService
 {
 
-    void CreateUser();
-
+    User CreateUser();
     User GetUser();
 
-    void DeleteUser();
+    void AddUser(User user);
 
+    IEnumerable<User> GetUsers();
+
+    void DeleteUser();
     void EditUser();
+
+    int CountUsers();
 
 }

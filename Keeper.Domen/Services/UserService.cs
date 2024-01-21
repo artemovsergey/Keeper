@@ -8,11 +8,24 @@ using System.Threading.Tasks;
 
 namespace Keeper.Domen.Services;
 
-public class UserService : IUser
+public class UserService : IUserService
 {
-    public void CreateUser()
+
+    private readonly IUserRepository _userRepository;
+    public UserService(IUserRepository userRepository)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Создался новый объект сервиса!");
+        _userRepository =  userRepository;
+    }
+
+    public void AddUser(User user)
+    {
+        _userRepository.AddUser(user);
+    }
+
+    public User CreateUser()
+    {
+       return _userRepository.Create();
     }
 
     public void DeleteUser()
@@ -29,4 +42,15 @@ public class UserService : IUser
     {
         throw new NotImplementedException();
     }
+
+    public IEnumerable<User> GetUsers()
+    {
+        return _userRepository.Users();
+    }
+
+    public int CountUsers()
+    {
+       return _userRepository.CountUsers();
+    }
+
 }

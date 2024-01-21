@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Keeper.Domen.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Keeper.Domen.Models
+namespace Keeper.Domen.Data
 {
     public class KeeperContext : DbContext
     {
@@ -16,7 +17,7 @@ namespace Keeper.Domen.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=KeeperTestDatabase;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=KeeperTestDatabase;Trusted_Connection=True;");
         }
 
     }

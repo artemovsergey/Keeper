@@ -5,13 +5,15 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keeper.API", "Keeper.API\Keeper.API.csproj", "{E0D6B085-7B9C-4C50-9E0C-DDEA5B3CE4A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Domen", "Keeper.Domen\Keeper.Domen.csproj", "{E46BC3DE-2646-4932-95C4-915787E2F4B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keeper.Domen", "Keeper.Domen\Keeper.Domen.csproj", "{E46BC3DE-2646-4932-95C4-915787E2F4B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.General", "Keeper.General\Keeper.General.csproj", "{CBCC60C5-3BFC-48D3-9F55-F3669A81BB68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keeper.General", "Keeper.General\Keeper.General.csproj", "{CBCC60C5-3BFC-48D3-9F55-F3669A81BB68}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Keeper.Statements", "Keeper.Statements\Keeper.Statements.esproj", "{60DDDA81-D36D-400C-BDF9-DB0C584D4AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Tests", "Keeper.Tests\Keeper.Tests.csproj", "{F79EF337-6516-4237-B9D6-1C95CAB1AEC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keeper.Tests", "Keeper.Tests\Keeper.Tests.csproj", "{F79EF337-6516-4237-B9D6-1C95CAB1AEC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presetration", "Presetration", "{BD0974ED-1761-4EC9-B096-DD1A8E59D052}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CBCC60C5-3BFC-48D3-9F55-F3669A81BB68} = {BD0974ED-1761-4EC9-B096-DD1A8E59D052}
+		{60DDDA81-D36D-400C-BDF9-DB0C584D4AD7} = {BD0974ED-1761-4EC9-B096-DD1A8E59D052}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B4D1C10-5C59-4ABE-876D-2B910DDC6E72}
