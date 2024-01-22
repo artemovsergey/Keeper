@@ -13,6 +13,6 @@ public class User
     public string Login { get; set; }
     public string Password { get; set; }
 
-    public IEnumerable<Statement>? Statements { get; set; }
+    public IEnumerable<Statement>? Statements { get; set; } = null;
 
 }

@@ -8,7 +8,6 @@ namespace Keeper.Domen.Models;
 
 public partial class Statement
 {
-
     public int Id { get; set; }
     public string Surname { get; set; } = null!;
     public string Name { get; set; } = null!;

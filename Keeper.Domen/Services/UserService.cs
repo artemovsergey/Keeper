@@ -11,12 +11,14 @@ namespace Keeper.Domen.Services;
 public class UserService : IUserService
 {
 
+    #region Конструктор_UserService
     private readonly IUserRepository _userRepository;
     public UserService(IUserRepository userRepository)
     {
         Console.WriteLine("Создался новый объект сервиса!");
         _userRepository =  userRepository;
     }
+    #endregion
 
     public void AddUser(User user)
     {
@@ -53,4 +55,18 @@ public class UserService : IUserService
        return _userRepository.CountUsers();
     }
 
+    public void Sign(User user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Auth(User user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IEnumerable<Statement> GetStatements(User user)
+    {
+        throw new NotImplementedException();
+    }
 }

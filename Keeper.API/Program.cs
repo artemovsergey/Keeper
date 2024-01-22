@@ -11,6 +11,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IUserRepository, UserLocalRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddSingleton<IStatementRepository, StatementLocalRepository>();
+builder.Services.AddScoped<IStatementService, StatementService>();
+
 
 var app = builder.Build();
 
@@ -55,6 +58,12 @@ app.MapGet("/users", (IUserService userService) =>
    Console.WriteLine(userService.CountUsers());
    return userService.GetUsers() ;
 });
+
+app.MapGet("/statements", (IStatementService statementService) =>
+{
+    return statementService.GetStatements();
+});
+
 
 app.Run();
 
