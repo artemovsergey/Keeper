@@ -36,9 +36,9 @@ public class EmployeeService : IEmployeeService
         throw new NotImplementedException();
     }
 
-
-    public virtual Statement SearchStatementByQr()
+    public Statement SearchStatementByQr()
     {
         throw new NotImplementedException();
     }
+
 }

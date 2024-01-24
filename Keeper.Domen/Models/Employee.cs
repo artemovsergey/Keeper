@@ -13,7 +13,6 @@ public class Employee
     public string FullName { get; set; }
     public string Code { get; set; }
 
-
     public int DivisionId { get; set; }
     public Division? Division { get; set; }
 

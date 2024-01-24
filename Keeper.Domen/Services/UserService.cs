@@ -8,19 +8,18 @@ using System.Threading.Tasks;
 
 namespace Keeper.Domen.Services;
 
-// реализация функций пользователя, сервис предоставляет данные для сериализации контроллеру API
+// реализация функций cервиса по работе с пользователями
+// сервис предоставляет данные для сериализации контроллеру API
 // данные он может просить у механизма хранения
 
 public class UserService : IUserService
 {
 
-    #region Конструктор_UserService
     private readonly IUserRepository _userRepository;
     public UserService(IUserRepository userRepository)
     {
         _userRepository =  userRepository;
     }
-    #endregion
 
     public void Auth(User user)
     {
@@ -44,6 +43,11 @@ public class UserService : IUserService
         // save md5
 
 
+        throw new NotImplementedException();
+    }
+
+    public void AddToBanList(User user)
+    {
         throw new NotImplementedException();
     }
 
