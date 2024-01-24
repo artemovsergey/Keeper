@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Keeper.Domen.Services;
 
+// реализация функций пользователя, сервис предоставляет данные для сериализации контроллеру API
+// данные он может просить у механизма хранения
+
 public class UserService : IUserService
 {
 
@@ -15,53 +18,14 @@ public class UserService : IUserService
     private readonly IUserRepository _userRepository;
     public UserService(IUserRepository userRepository)
     {
-        Console.WriteLine("Создался новый объект сервиса!");
         _userRepository =  userRepository;
     }
     #endregion
 
-    public void AddUser(User user)
-    {
-        _userRepository.AddUser(user);
-    }
-
-    public User CreateUser()
-    {
-       return _userRepository.Create();
-    }
-
-    public void DeleteUser()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void EditUser()
-    {
-        throw new NotImplementedException();
-    }
-
-    public User GetUser()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IEnumerable<User> GetUsers()
-    {
-        return _userRepository.Users();
-    }
-
-    public int CountUsers()
-    {
-       return _userRepository.CountUsers();
-    }
-
-    public void Sign(User user)
-    {
-        throw new NotImplementedException();
-    }
-
     public void Auth(User user)
     {
+        // авторизация по логину и паролю
+
         throw new NotImplementedException();
     }
 
@@ -69,4 +33,18 @@ public class UserService : IUserService
     {
         throw new NotImplementedException();
     }
+
+    public void Sign(User user)
+    {
+
+        // регистрация по почте и паролю
+        // >= 8 length
+        // up and down case
+        // special symbol
+        // save md5
+
+
+        throw new NotImplementedException();
+    }
+
 }

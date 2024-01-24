@@ -8,29 +8,18 @@ using System.Threading.Tasks;
 
 namespace Keeper.Domen.Interfaces;
 
+// функции посетителей
+
 public interface IUserService
 {
-    // регистрация пользователя
+
+    // может зарегистрироваться
     void Sign(User user);
 
-    // аутентификация пользователя
+    // может авторизоваться
     void Auth(User user);
 
-    // просмотр ранее поданных заявок
+    // может посмотреть свои заявки
     IEnumerable<Statement> GetStatements(User user);
-
-
-    User CreateUser();
-
-    User GetUser();
-
-    void AddUser(User user);
-
-    IEnumerable<User> GetUsers();
-
-    void DeleteUser();
-    void EditUser();
-
-    int CountUsers();
 
 }

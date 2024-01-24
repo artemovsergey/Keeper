@@ -8,15 +8,10 @@ using System.Threading.Tasks;
 
 namespace Keeper.Domen.Interfaces;
 
-public interface IUserRepository
+// описание функциональности механизма хранения
+
+public interface IEmployeeRepository
 {
-    User Create();
-
-    void AddUser(User user);
-
-    IEnumerable<User> Users();
-
-    User GetUserById(int id);
-
+    Employee GetEmployeeByCode(string code);
 
 }

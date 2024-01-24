@@ -8,16 +8,20 @@ using System.Threading.Tasks;
 
 namespace Keeper.Domen.Interfaces;
 
+// функции сервиса по работе с заявками
+
 public interface IStatementService
 {
 
-    // создать заявку
-    void CreateStatement();
+    void SignStatement();
 
-    // получить заявку
+    Statement EditStatement(Statement statement);
+
     Statement GetStatement(int id);
 
-    // получить все заявки
     IEnumerable<Statement> GetStatements();
-
+    IEnumerable<Statement> GetStatementsByType(string type);
+    IEnumerable<Statement> GetStatementsByDivision(string division);
+    IEnumerable<Statement> GetStatementsByStatus(string status);
+    IEnumerable<Statement> GetStatementsByDate(DateTime date);
 }
