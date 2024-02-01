@@ -11,6 +11,15 @@ namespace Keeper.Domen.Data
 {
     public class KeeperContext : DbContext
     {
+        public KeeperContext(DbContextOptions<KeeperContext> options) : base(options) 
+        {
+
+        }
+
+        public KeeperContext()
+        {
+                
+        }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Statement> Statements { get; set; }

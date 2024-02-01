@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Keeper.Domen.Data;
 
 
-public class UserLocalRepository : IUserRepository
+public class UserLocalRepository
 {
 
     private readonly List<User> users = new List<User>();
@@ -28,7 +28,32 @@ public class UserLocalRepository : IUserRepository
         return new User() { Id = 1, Email = "test@test.ru", Login = "test", Password = "test" };
     }
 
+    public Task Create(User user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task Edit(User user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task Edit(int id, User user)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<User> Get(int id)
+    {
+        throw new NotImplementedException();
+    }
+
     public User GetUserById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<User> Remove(int id)
     {
         throw new NotImplementedException();
     }
@@ -37,5 +62,6 @@ public class UserLocalRepository : IUserRepository
     {
         return users;
     }
+
 
 }

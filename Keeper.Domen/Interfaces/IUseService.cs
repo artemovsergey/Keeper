@@ -13,8 +13,15 @@ namespace Keeper.Domen.Interfaces;
 public interface IUserService
 {
 
+    Task<IEnumerable<User>> Users(int pageIndex,
+                                  int pageSize,
+                                  string sortColumn,
+                                  string sortOrder,
+                                  string filterColumn,
+                                  string filterQuery);
+
     // регистрация пользователя
-    void Sign(User user);
+    Task Sign(User user);
 
     // аутентификация пользователя
     void Auth(User user);
@@ -24,5 +31,10 @@ public interface IUserService
 
     // добавить пользователя в бан
     void AddToBanList(User user);
+    Task<User> GetUserById(int id);
+    Task EditUser(User user);
+    Task RemoveUser(int id);
+
+    Task<int> Count();
 
 }

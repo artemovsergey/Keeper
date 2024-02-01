@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,15 @@ public class Employee
     public string FullName { get; set; }
     public string Code { get; set; }
 
+   
     public int DivisionId { get; set; }
-    public Division? Division { get; set; }
+    public virtual Division? Division { get; set; }
 
+    
     public int DepartamentId { get; set; }
-    public Departament? Departament { get; set; }
+    
+    [NotMapped]
+    public virtual Departament? Departament { get; set; }
 
 
     public IEnumerable<Statement>? Statements { get; set; } = null;
