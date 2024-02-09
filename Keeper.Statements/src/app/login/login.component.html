@@ -1,0 +1,84 @@
+<div class="user-edit">
+  <h1>{{title}}</h1>
+  <p *ngIf="this.id && !user"><em>Loading...</em></p>
+  <div [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <p>
+      <mat-error *ngIf="form.invalid && form.hasError('isUniqEmail')">
+      <strong>ERROR</strong>:
+      Email already exists.
+      </mat-error>
+    </p>
+
+    <!-- Email -->
+    <mat-form-field>
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="email" required
+             placeholder="Type a Email">
+    
+      <mat-error *ngIf="this.form.controls['email'].errors?.['required']">
+        email is required.
+      </mat-error>
+     </mat-form-field>
+
+
+    <!-- Login -->
+    <mat-form-field>
+      <mat-label>Login:</mat-label>
+      <input matInput formControlName="login" required
+             placeholder="Insert Login">
+      <mat-error *ngIf="this.form.controls['login'].errors?.['required']">
+        login is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field>
+      <mat-label>Password:</mat-label>
+      <input matInput formControlName="password" required
+             placeholder="Insert Password">
+      <mat-error *ngIf="this.form.controls['password'].errors?.['required']">
+        password is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <p *ngIf="roles">
+      
+      <select id="roleId" formControlName="roleId">
+      <option value="">--- Роль ---</option>
+      <option *ngFor="let r of roles" [value]="r.id">
+      {{r.name}}
+      </option>
+      </select>
+    </p> -->
+
+    <mat-form-field *ngIf="roles">
+      <mat-label>Выберите роль...</mat-label>
+      <mat-select id="roleId" formControlName="roleId">
+        <mat-option *ngFor="let r of roles" [value]="r.id">
+          {{r.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="this.form.controls['roleId'].errors?.['required']">
+        roleId is required.
+      </mat-error>
+     </mat-form-field>
+
+
+  <div>
+
+      <button mat-flat-button
+              color="primary"
+              type="submit"
+              [disabled]="form.invalid"
+              (click)="onSubmit()">
+        {{ this.id ? "Save" : "Create" }}
+      </button>
+      <button mat-flat-button
+              color="secondary"
+              [routerLink]="['/users']">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>

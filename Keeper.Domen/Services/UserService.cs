@@ -86,4 +86,9 @@ public class UserService : IUserService
     {
         await _userRepository.Remove(id);
     }
+
+    public async Task<bool> IsUniqEmail(User user)
+    {
+       return await _userRepository.IsUniqEmail(user);
+    }
 }

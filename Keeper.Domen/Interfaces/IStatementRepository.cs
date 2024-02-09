@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Keeper.Domen.Interfaces;
 
 // механизм хранения заявок, т.е. что может делать репозиторий с заявками
@@ -34,9 +33,7 @@ public interface IStatementRepository
     // фильтрация по дате
     IEnumerable<Statement> StatementsByDate(DateTime date);
 
-
     // редактирование заявки
     Statement EditStatement(Statement statement);
-
 
 }

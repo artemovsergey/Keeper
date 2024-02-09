@@ -37,4 +37,6 @@ public interface IUserService
 
     Task<int> Count();
 
+    Task<bool> IsUniqEmail(User user);
+
 }

@@ -45,8 +45,6 @@ public class UsersController : ControllerBase
                                              filterColumn,
                                              filterQuery);
         
-        //return Ok(users);
-
         return new ApiResult<User>( (List<User>)users, 
                                     await _userService.Count(),
                                     pageIndex,
@@ -59,7 +57,6 @@ public class UsersController : ControllerBase
     }
 
     // POST: api/Users
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult> SignUser(User user)
     {
@@ -94,7 +91,6 @@ public class UsersController : ControllerBase
     }
 
     // PUT: api/Users/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutUser(int id,User user)
     {
@@ -114,8 +110,6 @@ public class UsersController : ControllerBase
 
         return NoContent();
     }
-
-
 
     // DELETE: api/Users/5
     [HttpDelete("{id}")]
@@ -154,5 +148,11 @@ public class UsersController : ControllerBase
         return Ok();
     }
 
+    [HttpPost]
+    [Route("isUniqEmail")]
+    public async Task<bool> isUniqEmail(User user)
+    {
+        return await _userService.IsUniqEmail(user);
+    }
 
 }

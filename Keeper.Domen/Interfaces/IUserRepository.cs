@@ -22,4 +22,7 @@ public interface IUserRepository
     Task Remove(int id);
     Task<int> Count();
 
+    Task<bool> IsUniqEmail(User user);
+
+
 }

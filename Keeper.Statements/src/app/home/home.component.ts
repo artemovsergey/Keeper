@@ -6,6 +6,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
+
+import { User } from './../models/user.model'
 
 @Component({
   selector: 'app-home',
@@ -14,7 +19,6 @@ import { MatSort } from '@angular/material/sort';
 })
 
 export class HomeComponent implements OnInit {
-
 
   public displayedColumns: string[] = ['id', 'email', 'login', 'password'];
   public users!: MatTableDataSource<User>;
@@ -31,6 +35,8 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  filterTextChanged: Subject<string> = new Subject<string>();
+
   constructor(private http: HttpClient)
   {
   }
@@ -38,6 +44,20 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.loadData();
   }
+
+  // debounce filter text changes
+  // можно применить технику throttleTime.
+  onFilterTextChanged(filterText: string) {
+    if (this.filterTextChanged.observers.length === 0) {
+      this.filterTextChanged
+        .pipe(debounceTime(1000), distinctUntilChanged())
+        .subscribe(query => {
+          this.loadData(query);
+        });
+    }
+    this.filterTextChanged.next(filterText);
+  }
+
 
   loadData(query?: string) {
     var pageEvent = new PageEvent();
@@ -74,17 +94,4 @@ export class HomeComponent implements OnInit {
       }, error => console.error(error));
   }
 
-}
-
-
-export interface User {
-  id: number;
-  email: string;
-  login: string;
-  password: string;
-  statements: Statement[] | null;
-}
-
-export interface Statement {
-  id: number;
 }

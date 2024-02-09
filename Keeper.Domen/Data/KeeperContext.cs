@@ -23,6 +23,7 @@ namespace Keeper.Domen.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Statement> Statements { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

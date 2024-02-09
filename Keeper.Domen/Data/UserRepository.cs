@@ -12,7 +12,6 @@ using System.Linq.Dynamic.Core;
 
 namespace Keeper.Domen.Data;
 
-
 public class UserRepository : IUserRepository
 {
 
@@ -105,4 +104,8 @@ public class UserRepository : IUserRepository
 
     }
 
+    public async Task<bool> IsUniqEmail(User user)
+    {
+       return await _db.Users.AnyAsync(u => u.Email == user.Email);
+    }
 }

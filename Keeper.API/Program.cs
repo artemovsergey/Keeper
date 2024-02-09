@@ -23,10 +23,13 @@ builder.Services.AddControllers()
 
 builder.Services.AddScoped<IValidator<User>, UserValidator>();
 
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
-builder.Services.AddSingleton<IStatementRepository, StatementLocalRepository>();
+builder.Services.AddScoped<IStatementRepository, StatementRepository>();
 builder.Services.AddScoped<IStatementService, StatementService>();
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
