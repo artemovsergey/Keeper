@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component'
-import { RoleEditComponent } from './role/role-edit.component';
+import { UsersComponent } from './components/users/users.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component'
+import { RoleEditComponent } from './components/role-edit/role-edit.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'user/:id', component: LoginComponent },
-  { path: 'users', component: HomeComponent, pathMatch: 'full' },
-  { path: 'user', component: LoginComponent },
+  { path: '', component: UsersComponent, pathMatch: 'full' },
+  { path: 'user/:id', component: UserEditComponent },
+  { path: 'users', component: UsersComponent, pathMatch: 'full' },
+  { path: 'user', component: UserEditComponent },
 
   { path: 'roles/:id', component: RoleEditComponent },
   { path: 'role', component: RoleEditComponent }

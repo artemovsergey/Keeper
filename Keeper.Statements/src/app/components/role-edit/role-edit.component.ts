@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl, AsyncValidatorFn} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from './../../enviroments/enviroment';
-import { Role } from './../models/user.model';
+import { environment } from '../../../enviroments/enviroment';
+import { Role } from '../../models/user.model';
 
 @Component({
   selector: 'app-role-edit',

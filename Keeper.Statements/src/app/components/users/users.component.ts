@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from './../../enviroments/enviroment';
+import { environment } from '../../../enviroments/enviroment';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -10,15 +10,15 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 
-import { User } from './../models/user.model'
+import { User } from '../../models/user.model'
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrl: './users.component.scss'
 })
 
-export class HomeComponent implements OnInit {
+export class UsersComponent implements OnInit {
 
   public displayedColumns: string[] = ['id', 'email', 'login', 'password'];
   public users!: MatTableDataSource<User>;
