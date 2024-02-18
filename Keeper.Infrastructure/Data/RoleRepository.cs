@@ -1,17 +1,4 @@
-﻿using Keeper.Domen.Interfaces;
-using Keeper.Domen.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Linq.Dynamic.Core;
-
-namespace Keeper.Domen.Data;
-
+﻿namespace Keeper.Domen.Data;
 
 public class RoleRepository : IRoleRepository
 {

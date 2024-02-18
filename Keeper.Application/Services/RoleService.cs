@@ -1,7 +1,4 @@
-﻿using Keeper.Domen.Interfaces;
-using Keeper.Domen.Models;
-
-namespace Keeper.Domen.Services;
+﻿namespace Keeper.Domen.Services;
 
 public class RoleService : IRoleService
 {

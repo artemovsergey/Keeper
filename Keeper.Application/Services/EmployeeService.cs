@@ -1,12 +1,4 @@
-﻿using Keeper.Domen.Interfaces;
-using Keeper.Domen.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Keeper.Domen.Services;
+﻿namespace Keeper.Domen.Services;
 
 // EmployeeService предоставляет данные для контроллера API которые будут сериализовываться
 

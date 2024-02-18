@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Keeper.Domen.Data;
-using Keeper.Domen.Models;
-using Keeper.Domen.Interfaces;
-
-namespace Keeper.API.Controllers;
+﻿namespace Keeper.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class RolesController : ControllerBase
+public class RolesController : Controller
 {
     private readonly KeeperContext _context;
     private readonly IRoleService _roleService;

@@ -1,24 +1,14 @@
-﻿using Keeper.Domen.Interfaces;
-using Keeper.Domen.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Keeper.Domen.Services;
+﻿namespace Keeper.Domen.Services;
 
 // сервис по работе с заявками, предосталяет данные для контроллера API
 public class StatementService : IStatementService
 {
 
-    #region Конструктор_StatementService
     private readonly IStatementRepository _statementRepository;
     public StatementService(IStatementRepository statementRepository)
     {
         _statementRepository = statementRepository;
     }
-    #endregion
 
     // регистрация заявки
     public void SignStatement()

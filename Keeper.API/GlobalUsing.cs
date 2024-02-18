@@ -1,0 +1,9 @@
+﻿global using FluentValidation;
+global using Keeper.Domen.Data;
+global using Keeper.Domen.Interfaces;
+global using Keeper.Domen.Models;
+global using Keeper.Domen.Services;
+global using Keeper.Domen.Validations;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Mvc;
+global using Bogus;

@@ -1,15 +1,4 @@
-﻿using Keeper.Domen.Data;
-using Keeper.Domen.Interfaces;
-using Keeper.Domen.Models;
-using Keeper.Domen.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OpenApi;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
-using FluentValidation;
-using Keeper.Domen.Validations;
-
-
+﻿
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

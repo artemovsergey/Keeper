@@ -1,12 +1,4 @@
-﻿using Keeper.Domen.Interfaces;
-using Keeper.Domen.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Keeper.Domen.Services;
+﻿namespace Keeper.Domen.Services;
 
 // реализация функций cервиса по работе с бан листом
 // сервис предоставляет данные для сериализации контроллеру API

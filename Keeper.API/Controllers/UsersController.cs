@@ -1,19 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Keeper.Domen.Data;
-using Keeper.Domen.Models;
-using Keeper.Domen.Services;
-using Keeper.Domen.Interfaces;
-using FluentValidation;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Bogus;
-
-namespace Keeper.API.Controllers;
+﻿namespace Keeper.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
