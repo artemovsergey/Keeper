@@ -14,7 +14,9 @@ public class KeeperContext : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<Statement> Statements { get; set; }
+    public DbSet<Division> Divisions { get; set; }
     public DbSet<Role> Roles { get; set; }
+    public DbSet<Departament> Departaments { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

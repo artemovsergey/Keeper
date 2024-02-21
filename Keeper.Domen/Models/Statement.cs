@@ -17,7 +17,6 @@ public partial class Statement
 
     public byte[]? Attachfile { get; set; }
 
-
     public DateTime Begindate { get; set; }
     public DateTime Enddate { get; set; }
     public string Target { get; set; } = null!;
@@ -28,7 +27,7 @@ public partial class Statement
 
     // может быть гость
     public int? UserId { get; set; }
-    public virtual User? User { get; set; }
+    public User? User { get; set; }
 
     // сотрудник зависит от подразделения
     public int EmployeeId { get; set; }

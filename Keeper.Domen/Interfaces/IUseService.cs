@@ -23,8 +23,11 @@ public interface IUserService
 
     // добавить пользователя в бан
     void AddToBanList(User user);
+
     Task<User> GetUserById(int id);
+
     Task EditUser(User user);
+
     Task RemoveUser(int id);
 
     Task<int> Count();
