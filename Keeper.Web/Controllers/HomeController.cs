@@ -1,4 +1,6 @@
+using Keeper.Domen.Data;
 using Keeper.Domen.Models;
+using Keeper.Web.Models;
 using System.Data;
 
 namespace Keeper.Web.Controllers;
@@ -6,10 +8,15 @@ namespace Keeper.Web.Controllers;
 public class HomeController : Controller
 {
 
+  
+
     private readonly ILogger<HomeController> _logger;
-    public HomeController(ILogger<HomeController> logger)
+    private readonly KeeperContext _db;
+
+    public HomeController(ILogger<HomeController> logger, KeeperContext db)
     {
         _logger = logger;
+        _db = db;
     }
 
     [HttpGet]
@@ -23,8 +30,10 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult CreateSelf()
     {
+        var statementViewModel = new StatementViewModel(_db);
 
-        return View("CreateSelf");
+        Console.WriteLine("Данные переданы контроллером в представление!");
+        return View("CreateSelf", statementViewModel);
     }
 
     [HttpGet]
@@ -35,7 +44,7 @@ public class HomeController : Controller
 
 
     [HttpPost]
-    public IActionResult Create(Statement statement)
+    public IActionResult Create([FromForm] Statement statement)
     {
         // модель привязки формирует объект заявки Statement
 

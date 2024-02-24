@@ -9,11 +9,11 @@ public class Employee
 
    
     public int DivisionId { get; set; }
-    public  Division? Division { get; set; }
+    public  Division? Division { get; set; } = null;
 
-    
+
     public int DepartamentId { get; set; }
-    public Departament? Departament { get; set; }
+    public Departament? Departament { get; set; } = null;
 
 
     public IEnumerable<Statement>? Statements { get; set; } = null;

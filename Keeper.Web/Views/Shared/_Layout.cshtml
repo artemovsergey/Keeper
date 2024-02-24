@@ -4,9 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Keeper.Web</title>
+    <base href="~/" />
+
+    <component type="typeof(Microsoft.AspNetCore.Components.Web.HeadOutlet)"
+               render-mode="ServerPrerendered" />
+
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Keeper.Web.styles.css" asp-append-version="true" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
     <header>
@@ -47,6 +56,8 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <partial name="_ValidationScriptsPartial.cshtml" />
+
+   
 
 </body>
 </html>

@@ -1,4 +1,6 @@
-﻿namespace Keeper.Domen.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Keeper.Domen.Models;
 
 public partial class Statement
 {
@@ -17,8 +19,12 @@ public partial class Statement
 
     public byte[]? Attachfile { get; set; }
 
-    public DateTime Begindate { get; set; }
+    [Required]
+    public DateTime? Begindate { get; set; } = null!;
+
+    [Required]
     public DateTime Enddate { get; set; }
+
     public string Target { get; set; } = null!;
     public string Status { get; set; } = null!;
 

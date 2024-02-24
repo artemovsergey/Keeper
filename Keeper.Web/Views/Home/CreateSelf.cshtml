@@ -1,14 +1,21 @@
-﻿@{
+﻿@using System.Text.Json.Serialization
+@using System.Net.Http.Json
+@using Newtonsoft.Json
+@model StatementViewModel
+@{
     ViewData["Title"] = "Личная заявка";
+    
 }
 
-<div class="container p-1">
+<div class="container p-1 text-center">
+    
+    <h1 class="text-warning p-4"> Заявка на личное посещение</h1>
 
     <form method="post" action="SignPost" class="col-md-12 text-center">
 
-        <div class="row p-1 border border-1 border-warning m-3 bg-secondary bg-opacity-10">
+        <div class="row p-1 border border-1 border-warning rounded rounded-3 m-3 bg-secondary bg-opacity-10">
 
-            <div class="col-md border border-1 border-warning m-1 ">
+            <div class="col-md border border-1 border-warning rounded rounded-3 m-1 ">
 
                 <div class="bg-warning border-1 rounded-pill my-2 p-2">
                     <h5>Информация для пропуска</h5>
@@ -20,11 +27,12 @@
 
                 
                 <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="login" placeholder="Login" required />
+                    <span asp-validation-for="@Model.Statement.Begindate"></span>
+                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Begindate" required />
                 </p>
 
                 <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="login" placeholder="Login" required />
+                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Enddate" required />
                 </p>
 
                 <p>
@@ -32,17 +40,18 @@
                 </p>
 
                 <p>
-                    <select class="form-select-auto user-select-auto">
-                        <option value="target1">Цель посещения 1</option>
-                        <option value="target2">Цель посещения 2</option>
-                        <option value="target3">Цель посещения 3</option>
+                    <select class="form-select-auto" asp-for="@Model.Statement.Target">
+                        <option value="" disabled selected>Выберите цель посещения</option>
+                        <option value="target1">Цель посещения  1</option>
+                        <option value="target2">Цель посещения  2</option>
+                        <option value="target3">Цель посещения  3</option>
                     </select>
                     
                 </p>
 
             </div>
 
-            <div class="col-md border border-1 border-warning m-1">
+            <div class="col-md border border-1 border-warning rounded rounded-3 m-1">
 
                 <div class="bg-warning border-1 rounded-pill my-2 p-2">
                     <h5>Принимающая сторона</h5>
@@ -53,137 +62,161 @@
                 </p>
 
                 <p>
-                    <select class="form-select-auto user-select-auto">
-                        <option value="target1">Подразделение 1</option>
-                        <option value="target2">Подразделение 2</option>
-                        <option value="target3">Подразделение 3</option>
+                    <select id="divisionSelect" class="form-select-auto">
+                            <option value="" disabled selected>Выберите подразделение</option>
+                        @{
+                            foreach (Division d in @Model.Divisions)
+                            {
+                                var employeesJson = JsonConvert.SerializeObject(d.Employees, Formatting.None, new JsonSerializerSettings
+                                                    {
+                                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                                                    });
+                                Console.WriteLine(employeesJson);
+                                <option value="@employeesJson">@d.Name</option>
+                            }
+                        }
                     </select>
+                </p>
 
+                <span><h5>Фио:</h5> </span>
+
+                <p>
+                    <select id="employeeList" class="form-select-auto">
+                        <option value="" disabled selected>Выберите сотрудника</option>
+                    </select>
+                </p>
+
+                <script>
+                    $(document).ready(function () {
+                        $('#divisionSelect').change(function () {
+                            var selectDivision = $(this).val(); // Исправлен синтаксис
+                            console.log(selectDivision);
+                            var employees = JSON.parse(selectDivision);
+                            console.log(employees);
+
+                            var employeeSelect = $('#employeeList');
+                            employeeSelect.empty(); // Очистка текущих опций
+
+
+                            $.each(employees, function (index, employee) {
+                                employeeSelect.append($('<option>', {
+                                    value: employee.Id, // Исправлено с employee.id на employee.Id
+                                    text: employee.FullName // Исправлено с employee.name на employee.FullName
+                                }));
+                            });
+                        });
+                    });
+                </script>
+
+                <img class="m-1" src="~/images/User.jpg" width="30px" height="30px"/>
+            
+            </div>
+
+        </div>
+
+        <div class="row p-1 border border-1 border-warning rounded rounded-3 m-3 bg-secondary bg-opacity-10">
+
+            <div class="bg-warning border-1 rounded-pill my-2 p-2">
+                <h5>Информация о посетителе</h5>
+            </div>
+
+            <div class="col-md border border-1 border-warning rounded rounded-3 m-1 p-4 ">
+
+                <p>
+                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Фамилия" required />
                 </p>
 
                 <p>
-                    <span><h5>Фио:</h5> </span>
+                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="name" placeholder="Имя" required />
                 </p>
 
-                <p class="m-1">
-                    <select class="form-select-auto user-select-auto m-1">
-                        <option value="target1">Иванов Иван Иванович</option>
-                        <option value="target2">Фио 2</option>
-                        <option value="target3">Фио 3</option>
-                    </select>
+                <p>
+                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="surname" placeholder="Отчество" required />
+                </p>
 
-                    <img class="m-1" src="~/images/User.jpg" width="30px" height="30px"/>
+                <p>
+                    <input type="tel" class="p-2 border border-3 border-warning rounded-pill" name="phone" placeholder="Телефон" required />
+                </p>
 
+                <p>
+                    <input type="email" class="p-2 border border-3 border-warning rounded-pill" name="email" placeholder="E-mail" required />
                 </p>
 
             </div>
 
-
-        </div>
-
-        <div class="row p-1 border border-1 border-warning m-3 bg-secondary bg-opacity-10">
-
-            <div class="col-md border border-1 border-warning m-1 ">
-
-                <div class="bg-warning border-1 rounded-pill my-2 p-2">
-                    <h5>Информация о посетителе</h5>
-                </div>
+            <div class="col-md border border-1 border-warning rounded rounded-3 m-1 p-4 ">
 
                 <p>
-                    <span><h5>Срок действия заявки:</h5> </span>
+                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Организация" required />
                 </p>
 
                 <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="login" placeholder="Login" required />
+                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Примечание" required />
                 </p>
 
                 <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="login" placeholder="Login" required />
+                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="birthday" placeholder="Дата рождения" required style="box-sizing: border-box; width:70%" />
                 </p>
 
                 <p>
-                    <span><h5>Цель посещения:</h5> </span>
+                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Серия" required />
                 </p>
 
                 <p>
-                    <select class="form-select-auto user-select-auto">
-                        <option value="target1">Цель посещения 1</option>
-                        <option value="target2">Цель посещения 2</option>
-                        <option value="target3">Цель посещения 3</option>
-                    </select>
+                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Номер" required />
+                </p>
 
+            </div>
+
+            <div class="col-md border border-1 border-warning rounded rounded-3 m-1 p-4 ">
+
+                <p>
+                    <img src="~/images/User.jpg" width="250" height="250"/>
+                </p>
+
+                <p>
+                   
+                    
+
+                    <input type="file" id="fileInput" style="display: none;">
+
+                    <label for="fileInput" class="btn btn-warning">Загрузить</label>
+                    
+                    <a style="display: none;" class="btn btn-warning" onclick="document.getElementById('fileInput').click();">Загрузить</a>
                 </p>
 
             </div>
                
-  
         </div>
 
-        <div class="row p-1 border border-1 border-warning m-3 bg-secondary bg-opacity-10">
+        <div class="row p-1 border border-1 border-warning rounded rounded-3 m-3 bg-secondary bg-opacity-10">
 
-            <div class="col-md border border-1 border-warning m-1 ">
+            <div class="col-md border border-1 border-warning rounded rounded-3 m-1 ">
 
                 <div class="bg-warning border-1 rounded-pill my-2 p-2">
                     <h5>Прикрепляемые документы</h5>
                 </div>
 
-                <p>
-                    <span><h5>Срок действия заявки:</h5> </span>
+                <p class="p-3">
+                    <input type="file" style="display: none;" class="p-1 border border-3 border-warning rounded-pill" id="fileInputDocument" name="file" required />
+                    <a  class="btn btn-warning" onclick="document.getElementById('fileInputDocument').click();">Прикрепить</a>
                 </p>
 
-                <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="login" placeholder="Login" required />
-                </p>
-
-                <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="login" placeholder="Login" required />
-                </p>
-
-                <p>
-                    <span><h5>Цель посещения:</h5> </span>
-                </p>
-
-                <p>
-                    <select class="form-select-auto user-select-auto">
-                        <option value="target1">Цель посещения 1</option>
-                        <option value="target2">Цель посещения 2</option>
-                        <option value="target3">Цель посещения 3</option>
-                    </select>
-
-                </p>
 
             </div>
 
-            <div class="col-md border border-3 border-warning m-1 ">
+            <div class="col-md border border-1 border-warning rounded rounded-3 m-1 ">
 
                 <div class="bg-warning border-3 rounded-pill my-2 p-2">
                     <h5>Оформление заявки</h5>
                 </div>
 
                 <p>
-                    <span><h5>Срок действия заявки:</h5> </span>
-                </p>
-
-
-                <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="login" placeholder="Login" required />
+                   <a class="btn btn-white">Очистить форму</a>
                 </p>
 
                 <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="login" placeholder="Login" required />
-                </p>
-
-                <p>
-                    <span><h5>Цель посещения:</h5> </span>
-                </p>
-
-                <p>
-                    <select class="form-select-auto user-select-auto">
-                        <option value="target1">Цель посещения 1</option>
-                        <option value="target2">Цель посещения 2</option>
-                        <option value="target3">Цель посещения 3</option>
-                    </select>
-
+                    <a class="btn bg-white border border-2 border-warning rounded rounded-fill">Оформить заявку</a>
                 </p>
 
             </div>

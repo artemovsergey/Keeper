@@ -1,0 +1,38 @@
+﻿@using Keeper.Domen.Data
+@using Keeper.Web.Models
+
+@inject KeeperContext db
+@inject StatementViewModel viewmodel;
+
+
+@if(Divisions != null){
+    <select class="form-select-auto" @onchange="@OnDivisionChanged">
+        <option value="" disabled selected>Выберите подразделение</option>
+        @foreach (var division in Divisions)
+        {
+            <option value="@division.Id">@division.Name</option>
+        }
+    </select>
+}
+else
+{
+    <h2> Компонент не отображается!</h2>
+}
+
+
+@code {
+
+    public IEnumerable<Division> Divisions { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Divisions = viewmodel.Divisions;
+        Console.WriteLine("Загрузился компонент!");
+    }
+
+    public void OnDivisionChanged(ChangeEventArgs args)
+    {
+        // Обработка изменения выбранного подразделения
+        Console.WriteLine($"123");
+    }
+}

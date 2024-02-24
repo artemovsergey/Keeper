@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keeper.Infrastructure", "Ke
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{7364A309-61C2-404E-9E37-0515F614C3B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Web", "Keeper.Web\Keeper.Web.csproj", "{C2E939BE-B37A-434B-A2E5-9D07F361A221}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Keeper.Web", "Keeper.Web\Keeper.Web.csproj", "{C2E939BE-B37A-434B-A2E5-9D07F361A221}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Blazor", "Keeper.Blazor\Keeper.Blazor.csproj", "{1BA7291E-7BA6-4DB9-9E9A-FF3E88BCCC47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{C2E939BE-B37A-434B-A2E5-9D07F361A221}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2E939BE-B37A-434B-A2E5-9D07F361A221}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2E939BE-B37A-434B-A2E5-9D07F361A221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BA7291E-7BA6-4DB9-9E9A-FF3E88BCCC47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BA7291E-7BA6-4DB9-9E9A-FF3E88BCCC47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BA7291E-7BA6-4DB9-9E9A-FF3E88BCCC47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BA7291E-7BA6-4DB9-9E9A-FF3E88BCCC47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{CBCC60C5-3BFC-48D3-9F55-F3669A81BB68} = {7364A309-61C2-404E-9E37-0515F614C3B7}
 		{60DDDA81-D36D-400C-BDF9-DB0C584D4AD7} = {7364A309-61C2-404E-9E37-0515F614C3B7}
 		{C2E939BE-B37A-434B-A2E5-9D07F361A221} = {7364A309-61C2-404E-9E37-0515F614C3B7}
+		{1BA7291E-7BA6-4DB9-9E9A-FF3E88BCCC47} = {7364A309-61C2-404E-9E37-0515F614C3B7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B4D1C10-5C59-4ABE-876D-2B910DDC6E72}

@@ -8,7 +8,7 @@ namespace Keeper.Domen.Models;
 
 public class Departament
 {
-    public long Id { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; }
 
     public IEnumerable<Employee>? Employees { get; set; } = null;
