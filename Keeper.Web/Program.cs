@@ -10,7 +10,7 @@ public class Program
         string connection = builder.Configuration.GetConnectionString("DefaultConnection");
         builder.Services.AddDbContext<KeeperContext>(options => options.UseSqlServer(connection));
         
-        //builder.Services.AddScoped<StatementViewModel>();
+        builder.Services.AddScoped<StatementViewModel>();
         //builder.Services.AddServerSideBlazor();
 
         //builder.Services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize);

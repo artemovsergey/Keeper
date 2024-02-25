@@ -16,9 +16,11 @@ public class StatementViewModel
 
     public IEnumerable<Employee> Employees { get; set; }
 
+    private readonly KeeperContext _db;
     public StatementViewModel(KeeperContext db)
     {
-        Divisions = db.Divisions.Include(d => d.Employees).ToList();
+        _db = db;
+        Divisions = _db.Divisions.Include(d => d.Employees).ToList();
         Console.WriteLine("Данные из модели загружены!");
     }
 

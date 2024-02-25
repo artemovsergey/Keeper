@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Keeper.Domen.Validations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Keeper.Domen.Models;
 
 public partial class Statement
 {
     public int Id { get; set; }
+
+
+    [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 50 символов")]
     public string Surname { get; set; } = null!;
     public string Name { get; set; } = null!;
     public string Patronimic { get; set; } = null!;
@@ -17,16 +21,20 @@ public partial class Statement
     public string? Photo { get; set; }
     public DateTime Birthday { get; set; }
 
-    public byte[]? Attachfile { get; set; }
+    public byte[]? Attachfile { get; set; } = null;
+
+    
+    [Required(ErrorMessage = "Нужна дата!")]
+    [DateRange(ErrorMessage = "Дата не валидного диапазона!")]
+    public DateTime Begindate { get; set; }
 
     [Required]
-    public DateTime? Begindate { get; set; } = null!;
 
-    [Required]
+    [DateRange2("03.02.2024", "05.02.2024", ErrorMessage = "Дата должна быть в диапазоне от  03.02.2024 по  05.02.2024")]
     public DateTime Enddate { get; set; }
 
     public string Target { get; set; } = null!;
-    public string Status { get; set; } = null!;
+    public string Status { get; set; } = "Проверка";
 
     // может быть личная и коллективная заявки
     public string? Group { get; set; } = null!;

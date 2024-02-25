@@ -1,6 +1,7 @@
 ﻿@using System.Text.Json.Serialization
 @using System.Net.Http.Json
 @using Newtonsoft.Json
+
 @model StatementViewModel
 @{
     ViewData["Title"] = "Личная заявка";
@@ -11,7 +12,8 @@
     
     <h1 class="text-warning p-4"> Заявка на личное посещение</h1>
 
-    <form method="post" action="SignPost" class="col-md-12 text-center">
+    <div asp-validation-summary="All"></div>
+    <form id="form" method="post" asp-action="Create" class="col-md-12 text-center">
 
         <div class="row p-1 border border-1 border-warning rounded rounded-3 m-3 bg-secondary bg-opacity-10">
 
@@ -21,34 +23,32 @@
                     <h5>Информация для пропуска</h5>
                 </div>
 
-                <p>
-                    <span><h5>Срок действия заявки:</h5> </span>
-                </p>
+                <span><h5>Срок действия заявки:</h5> </span>
 
-                
-                <p>
-                    <span asp-validation-for="@Model.Statement.Begindate"></span>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Begindate" required />
-                </p>
 
-                <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Enddate" required />
-                </p>
 
-                <p>
-                    <span><h5>Цель посещения:</h5> </span>
-                </p>
 
-                <p>
-                    <select class="form-select-auto" asp-for="@Model.Statement.Target">
-                        <option value="" disabled selected>Выберите цель посещения</option>
-                        <option value="target1">Цель посещения  1</option>
-                        <option value="target2">Цель посещения  2</option>
-                        <option value="target3">Цель посещения  3</option>
-                    </select>
-                    
-                </p>
+               
 
+                <span class="text-danger" asp-validation-for="@Model.Statement.Begindate"></span>
+                <input id="datepicker" type="date" class="p-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Begindate" />
+
+
+
+
+
+
+                <span class="text-danger" asp-validation-for="@Model.Statement.Enddate"></span>
+                <input type="date" class="p-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Enddate" />
+
+                <span><h5>Цель посещения:</h5> </span>
+
+                <select class="p-1 m-3 form-select-auto border border-3 border-warning rounded" asp-for="@Model.Statement.Target">
+                    <option value="" disabled selected>Выберите цель посещения</option>
+                    <option value="target1">Цель посещения  1</option>
+                    <option value="target2">Цель посещения  2</option>
+                    <option value="target3">Цель посещения  3</option>
+                </select>
             </div>
 
             <div class="col-md border border-1 border-warning rounded rounded-3 m-1">
@@ -57,12 +57,9 @@
                     <h5>Принимающая сторона</h5>
                 </div>
 
-                <p>
-                    <span><h5>Подразделение:</h5> </span>
-                </p>
+                <span><h5>Подразделение:</h5> </span>
 
-                <p>
-                    <select id="divisionSelect" class="form-select-auto">
+                <select id="divisionSelect" class="p-1 m-3 form-select-auto border border-3 border-warning rounded form-select-auto">
                             <option value="" disabled selected>Выберите подразделение</option>
                         @{
                             foreach (Division d in @Model.Divisions)
@@ -71,21 +68,18 @@
                                                     {
                                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                                                     });
-                                Console.WriteLine(employeesJson);
+                                
                                 <option value="@employeesJson">@d.Name</option>
                             }
                         }
                     </select>
-                </p>
-
+                
                 <span><h5>Фио:</h5> </span>
 
-                <p>
-                    <select id="employeeList" class="form-select-auto">
-                        <option value="" disabled selected>Выберите сотрудника</option>
-                    </select>
-                </p>
-
+                <select id="employeeList" class="form-select-auto p-1 m-3 form-select-auto border border-3 border-warning rounded" asp-for="@Model.Statement.EmployeeId">
+                    <option value="" disabled selected>Выберите сотрудника</option>
+                </select>
+                
                 <script>
                     $(document).ready(function () {
                         $('#divisionSelect').change(function () {
@@ -100,15 +94,18 @@
 
                             $.each(employees, function (index, employee) {
                                 employeeSelect.append($('<option>', {
-                                    value: employee.Id, // Исправлено с employee.id на employee.Id
-                                    text: employee.FullName // Исправлено с employee.name на employee.FullName
+                                    value: employee.Id,
+                                    text: employee.FullName,
+                                    class: ""
                                 }));
                             });
                         });
                     });
                 </script>
 
-                <img class="m-1" src="~/images/User.jpg" width="30px" height="30px"/>
+               <p>
+                    <img class="m-1" src="~/images/User.jpg" width="50px" height="50px" />
+               </p>
             
             </div>
 
@@ -121,108 +118,76 @@
             </div>
 
             <div class="col-md border border-1 border-warning rounded rounded-3 m-1 p-4 ">
-
-                <p>
-                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Фамилия" required />
-                </p>
-
-                <p>
-                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="name" placeholder="Имя" required />
-                </p>
-
-                <p>
-                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="surname" placeholder="Отчество" required />
-                </p>
-
-                <p>
-                    <input type="tel" class="p-2 border border-3 border-warning rounded-pill" name="phone" placeholder="Телефон" required />
-                </p>
-
-                <p>
-                    <input type="email" class="p-2 border border-3 border-warning rounded-pill" name="email" placeholder="E-mail" required />
-                </p>
-
+                
+                <span class="text-danger" asp-validation-for="@Model.Statement.Surname"></span>
+                <input type="text" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Surname" placeholder="Фамилия"  />
+                
+                <input type="text" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Name" placeholder="Имя"  />
+                <input type="text" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Patronimic" placeholder="Отчество"  />
+                <input type="tel" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Phone" placeholder="Телефон"  />
+                <input type="email" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Email" placeholder="E-mail"  />
             </div>
 
             <div class="col-md border border-1 border-warning rounded rounded-3 m-1 p-4 ">
 
-                <p>
-                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Организация" required />
-                </p>
+                <label><h5>Дата рождения</h5></label>
+                <input type="date" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Birthday" placeholder="Дата рождения"  style="box-sizing: border-box; width:70%" />
+                
+                <input type="text" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Company" placeholder="Организация"  />
+                <input type="text" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Note" placeholder="Примечание"  />
 
-                <p>
-                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Примечание" required />
-                </p>
-
-                <p>
-                    <input type="date" class="p-2 border border-3 border-warning rounded-pill" name="birthday" placeholder="Дата рождения" required style="box-sizing: border-box; width:70%" />
-                </p>
-
-                <p>
-                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Серия" required />
-                </p>
-
-                <p>
-                    <input type="text" class="p-2 border border-3 border-warning rounded-pill" name="fio" placeholder="Номер" required />
-                </p>
-
+                <input type="text" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Passportserial" placeholder="Серия"  />
+                <input type="text" class="p-2 m-2 border border-3 border-warning rounded-pill" asp-for="@Model.Statement.Passportnumber" placeholder="Номер"  />
             </div>
 
+            <!-- Upload image-->
             <div class="col-md border border-1 border-warning rounded rounded-3 m-1 p-4 ">
-
-                <p>
-                    <img src="~/images/User.jpg" width="250" height="250"/>
-                </p>
-
-                <p>
-                   
-                    
-
-                    <input type="file" id="fileInput" style="display: none;">
-
-                    <label for="fileInput" class="btn btn-warning">Загрузить</label>
-                    
-                    <a style="display: none;" class="btn btn-warning" onclick="document.getElementById('fileInput').click();">Загрузить</a>
-                </p>
-
+                <img class="p-2 m-3 border border-warning bordered-pill" src="~/images/User.jpg" width="250" height="250"/>
+                <input type="file" id="fileInput" style="display: none;">
+                <label for="fileInput" class="btn btn-warning">Загрузить</label>
+                <a style="display: none;" class="btn btn-warning" onclick="document.getElementById('fileInput').click();">Загрузить</a>
             </div>
-               
         </div>
 
         <div class="row p-1 border border-1 border-warning rounded rounded-3 m-3 bg-secondary bg-opacity-10">
 
-            <div class="col-md border border-1 border-warning rounded rounded-3 m-1 ">
+            <div class="col-md border border-1 border-warning rounded rounded-3 m-2 p-2 ">
 
-                <div class="bg-warning border-1 rounded-pill my-2 p-2">
+                <!-- Upload document-->
+                <div class="bg-warning border-1 rounded-pill m-2 p-2">
                     <h5>Прикрепляемые документы</h5>
                 </div>
 
-                <p class="p-3">
-                    <input type="file" style="display: none;" class="p-1 border border-3 border-warning rounded-pill" id="fileInputDocument" name="file" required />
-                    <a  class="btn btn-warning" onclick="document.getElementById('fileInputDocument').click();">Прикрепить</a>
-                </p>
-
-
+                <input type="file" style="display: none;" class="p-1 border border-3 border-warning rounded-pill" id="fileInputDocument" name="file"  />
+                <a  class="btn btn-warning" onclick="document.getElementById('fileInputDocument').click();">Прикрепить</a>
+                
             </div>
 
-            <div class="col-md border border-1 border-warning rounded rounded-3 m-1 ">
-
+            <div class="col-md border border-1 border-warning rounded rounded-3 m-2 p-2 ">
                 <div class="bg-warning border-3 rounded-pill my-2 p-2">
                     <h5>Оформление заявки</h5>
                 </div>
 
-                <p>
-                   <a class="btn btn-white">Очистить форму</a>
-                </p>
-
-                <p>
-                    <a class="btn bg-white border border-2 border-warning rounded rounded-fill">Оформить заявку</a>
-                </p>
-
+                <a id="clearFormBtn" class="btn btn-white">Очистить форму</a>
+                <input type="submit" class="btn bg-white border border-2 border-warning rounded rounded-fill"/>
             </div>
 
         </div>
 
      </form>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var clearFormBtn = document.getElementById('clearFormBtn');
+            if (clearFormBtn) {
+                clearFormBtn.addEventListener('click', function (event) {
+                    event.preventDefault(); // Предотвращаем стандартное поведение кнопки
+                    document.querySelector('form').reset(); // Сбрасываем форму
+                    $('#employeeList').empty().append($('<option>', { value: "", text: "Выберите сотрудника" }));
+                });
+            }
+        });
+    </script>
 
 </div>
